@@ -60,7 +60,7 @@ function Index() {
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [jour, setJour] = useState(JOURS[0].iso);
+  const [jour, setJour] = useState<string>(JOURS[0]!.iso);
   const [ouvert, setOuvert] = useState(false);
   const [frais, setFrais] = useState(FRAIS_PAR_PRESENCE);
   const [rechercheListe, setRechercheListe] = useState("");
