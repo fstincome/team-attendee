@@ -8,6 +8,13 @@
       "when": 1789975493107,
       "tag": "0000_create_presences",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789977180227,
+      "tag": "0001_presences_auth_only",
+      "breakpoints": true
     }
   ]
 }
