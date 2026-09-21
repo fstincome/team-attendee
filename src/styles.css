@@ -18,6 +18,29 @@
  * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
+@theme {
+  --color-ink: #0b0b12;
+  --color-ink2: #14141f;
+  --color-crimson: #ff2e4d;
+  --color-gold: #ffc233;
+  --color-cyan: #22d3ee;
+  --color-violet: #7c3aed;
+  --font-display: "Anton", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+}
+
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.14;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -63,9 +86,9 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
+  --background: oklch(0.145 0.02 285);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0.02 285);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
