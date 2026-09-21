@@ -313,7 +313,7 @@ function Registre() {
                               key={c.id}
                               value={`${c.nom} ${c.groupe}`}
                               onSelect={() => {
-                                marquer(c.id);
+                                setEnAttente(c.id);
                                 setOuvert(false);
                               }}
                             >
