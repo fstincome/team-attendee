@@ -4,6 +4,7 @@ import { Check, ChevronsUpDown, Search, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { CANDIDATS, JOURS, FRAIS_PAR_PRESENCE } from "@/data/candidats";
 import { genererPdfPresences } from "@/lib/pdf-presences";
+import { Connexion } from "@/components/Connexion";
 import {
   Command,
   CommandEmpty,
@@ -55,6 +56,27 @@ const ONGLETS: { id: Onglet; label: string }[] = [
 ];
 
 function Index() {
+  const [session, setSession] = useState<unknown | null>(null);
+  const [authPret, setAuthPret] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setAuthPret(true);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSession(s);
+      setAuthPret(true);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  if (!authPret) return <div className="min-h-screen bg-ink" />;
+  if (!session) return <Connexion />;
+  return <Registre />;
+}
+
+function Registre() {
   const [onglet, setOnglet] = useState<Onglet>("pointage");
   const [presences, setPresences] = useState<Set<string>>(new Set());
   const [chargement, setChargement] = useState(true);
