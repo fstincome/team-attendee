@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Index;
+  component: Index,
 });
 
 const cle = (candidatId: string, iso: string) => `${candidatId}|${iso}`;
