@@ -124,6 +124,12 @@ function Registre() {
   const marquer = async (candidatId: string) => {
     const k = cle(candidatId, jour);
     setErreur(null);
+    if (jour > isoDuJour()) {
+      setErreur(
+        "Impossible de pointer : cette journée n'est pas encore arrivée.",
+      );
+      return;
+    }
     if (presences.has(k)) {
       setMessage(`${nomDe(candidatId)} est déjà marqué présent ce jour-là.`);
       return;
