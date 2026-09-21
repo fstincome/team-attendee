@@ -221,6 +221,13 @@ function Registre() {
               </button>
             ))}
           </nav>
+          <button
+            type="button"
+            onClick={() => supabase.auth.signOut()}
+            className="rounded-full border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest text-white/60 hover:text-white"
+          >
+            Se déconnecter
+          </button>
         </div>
       </header>
 
