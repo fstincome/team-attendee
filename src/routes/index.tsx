@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Check, ChevronsUpDown, Search, Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { CANDIDATS, JOURS, FRAIS_PAR_PRESENCE } from "@/data/candidats";
 import { genererPdfPresences } from "@/lib/pdf-presences";
@@ -89,6 +99,7 @@ function Registre() {
   const [message, setMessage] = useState<string | null>(null);
   const [jour, setJour] = useState<string>(JOURS[0]!.iso);
   const [ouvert, setOuvert] = useState(false);
+  const [enAttente, setEnAttente] = useState<string | null>(null);
   const [frais, setFrais] = useState(FRAIS_PAR_PRESENCE);
   const [rechercheListe, setRechercheListe] = useState("");
 
