@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { PresenceLogo } from "@/components/PresenceLogo";
 
 export function Connexion() {
   const [email, setEmail] = useState("");
@@ -25,13 +26,8 @@ export function Connexion() {
         onSubmit={soumettre}
         className="w-full max-w-sm rounded-2xl border border-white/10 bg-ink2/60 p-8"
       >
-        <p className="text-[10px] uppercase tracking-[0.35em] text-gold">
-          Bootcamp 2026
-        </p>
-        <h1 className="font-display text-2xl tracking-wide mt-1">
-          Registre des présences
-        </h1>
-        <p className="text-xs text-white/50 mt-2">
+        <PresenceLogo />
+        <p className="text-xs text-white/50 mt-4 border-l-2 border-gold pl-3">
           Accès réservé au responsable administratif et financier.
         </p>
 
