@@ -333,6 +333,35 @@ function Registre() {
                 </PopoverContent>
               </Popover>
 
+              <AlertDialog
+                open={enAttente !== null}
+                onOpenChange={(o) => !o && setEnAttente(null)}
+              >
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="font-display tracking-wide">
+                      Confirmer la présence
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {presences.has(cle(enAttente ?? "", jour))
+                        ? `${nomDe(enAttente ?? "")} est déjà marqué présent le ${jourDe(jour)?.jour} ${jourDe(jour)?.num} septembre.`
+                        : `Marquer ${nomDe(enAttente ?? "")} comme présent le ${jourDe(jour)?.jour} ${jourDe(jour)?.num} septembre 2026 ?`}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => {
+                        if (enAttente) marquer(enAttente);
+                        setEnAttente(null);
+                      }}
+                    >
+                      Confirmer
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
               {message && (
                 <p className="mt-4 text-sm text-cyan">{message}</p>
               )}
