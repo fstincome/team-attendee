@@ -46,6 +46,10 @@ const cle = (candidatId: string, iso: string) => `${candidatId}|${iso}`;
 const fmt = (n: number) => n.toLocaleString("fr-FR").replace(/\u202f|,/g, " ");
 const nomDe = (id: string) => CANDIDATS.find((c) => c.id === id)?.nom ?? id;
 const jourDe = (iso: string) => JOURS.find((j) => j.iso === iso);
+const isoDuJour = () =>
+  new Intl.DateTimeFormat("sv-SE", { timeZone: "Africa/Bujumbura" }).format(
+    new Date(),
+  );
 
 type Onglet = "pointage" | "liste" | "bord" | "reglages";
 
@@ -120,6 +124,12 @@ function Registre() {
   const marquer = async (candidatId: string) => {
     const k = cle(candidatId, jour);
     setErreur(null);
+    if (jour > isoDuJour()) {
+      setErreur(
+        "Impossible de pointer : cette journée n'est pas encore arrivée.",
+      );
+      return;
+    }
     if (presences.has(k)) {
       setMessage(`${nomDe(candidatId)} est déjà marqué présent ce jour-là.`);
       return;
@@ -243,20 +253,26 @@ function Registre() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {JOURS.map((j) => (
-                  <button
-                    key={j.iso}
-                    type="button"
-                    onClick={() => setJour(j.iso)}
-                    className={`px-4 py-2 rounded-lg text-sm transition-colors border ${
-                      jour === j.iso
-                        ? "bg-gold text-ink border-gold font-semibold"
-                        : "border-white/15 text-white/70 hover:border-gold"
-                    }`}
-                  >
-                    {j.jour} {j.num} sept.
-                  </button>
-                ))}
+                {JOURS.map((j) => {
+                  const futur = j.iso > isoDuJour();
+                  return (
+                    <button
+                      key={j.iso}
+                      type="button"
+                      disabled={futur}
+                      onClick={() => setJour(j.iso)}
+                      className={`px-4 py-2 rounded-lg text-sm transition-colors border ${
+                        jour === j.iso
+                          ? "bg-gold text-ink border-gold font-semibold"
+                          : futur
+                            ? "border-white/10 text-white/30 cursor-not-allowed"
+                            : "border-white/15 text-white/70 hover:border-gold"
+                      }`}
+                    >
+                      {j.jour} {j.num} sept.
+                    </button>
+                  );
+                })}
               </div>
 
               <Popover open={ouvert} onOpenChange={setOuvert}>
