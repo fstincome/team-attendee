@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { CANDIDATS, JOURS, FRAIS_PAR_PRESENCE } from "@/data/candidats";
 import { genererPdfPresences } from "@/lib/pdf-presences";
 import { Connexion } from "@/components/Connexion";
+import { PresenceLogo } from "@/components/PresenceLogo";
 import {
   Command,
   CommandEmpty,
@@ -197,14 +198,7 @@ function Registre() {
     <div className="min-h-screen bg-ink text-white font-body">
       <header className="border-b border-white/10 bg-ink2/60 sticky top-0 z-30 backdrop-blur">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center gap-4 justify-between">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-gold">
-              Bootcamp 2026
-            </p>
-            <h1 className="font-display text-2xl tracking-wide">
-              Registre des présences
-            </h1>
-          </div>
+          <PresenceLogo />
           <nav className="flex flex-wrap gap-1 rounded-full border border-white/10 p-1">
             {ONGLETS.map((o) => (
               <button
