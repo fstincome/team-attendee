@@ -4,14 +4,21 @@ import { CANDIDATS, JOURS, FRAIS_PAR_PRESENCE } from "@/data/candidats";
 
 const fmt = (n: number) => n.toLocaleString("fr-FR").replace(/\u202f|,/g, " ");
 
-export function genererPdfPresences(presences: Set<string>) {
+export function genererPdfPresences(
+  presences: Set<string>,
+  frais: number = FRAIS_PAR_PRESENCE,
+) {
   const doc = new jsPDF({ orientation: "landscape" });
 
   doc.setFontSize(18);
   doc.text("Registre des présences", 14, 18);
   doc.setFontSize(10);
   doc.text("Bootcamp — 21 au 25 septembre 2026", 14, 25);
-  doc.text("Frais de déplacement : 5 000 BIF par journée de présence", 14, 31);
+  doc.text(
+    `Frais de déplacement : ${fmt(frais)} BIF par journée de présence`,
+    14,
+    31,
+  );
 
   let totalPresences = 0;
 
@@ -27,7 +34,7 @@ export function genererPdfPresences(presences: Set<string>) {
       c.groupe,
       ...marques,
       String(jours),
-      `${fmt(jours * FRAIS_PAR_PRESENCE)} BIF`,
+      `${fmt(jours * frais)} BIF`,
     ];
   });
 
@@ -56,7 +63,7 @@ export function genererPdfPresences(presences: Set<string>) {
         "",
         "",
         String(totalPresences),
-        `${fmt(totalPresences * FRAIS_PAR_PRESENCE)} BIF`,
+        `${fmt(totalPresences * frais)} BIF`,
       ],
     ],
     footStyles: { fillColor: [20, 20, 31], textColor: 255 },
