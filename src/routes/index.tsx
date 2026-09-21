@@ -46,6 +46,10 @@ const cle = (candidatId: string, iso: string) => `${candidatId}|${iso}`;
 const fmt = (n: number) => n.toLocaleString("fr-FR").replace(/\u202f|,/g, " ");
 const nomDe = (id: string) => CANDIDATS.find((c) => c.id === id)?.nom ?? id;
 const jourDe = (iso: string) => JOURS.find((j) => j.iso === iso);
+const isoDuJour = () =>
+  new Intl.DateTimeFormat("sv-SE", { timeZone: "Africa/Bujumbura" }).format(
+    new Date(),
+  );
 
 type Onglet = "pointage" | "liste" | "bord" | "reglages";
 
