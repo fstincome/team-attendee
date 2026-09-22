@@ -39,6 +39,7 @@ export const CANDIDATS: Candidat[] = [
   { id: "28", nom: "Iragaba Ainé donels", email: "ainedonelsiragaba@gmail.com", tel: "+257 65783007", groupe: "BIG 4", profil: "Backend", niveau: "Intermédiaire" },
   { id: "29", nom: "Niyurukundo methode", email: "niyurukundomethode@gmail.com", tel: "+25761522887", groupe: "Buticket team", profil: "Backend", niveau: "Intermédiaire" },
   { id: "30", nom: "Dahl Ndayisenga", email: "dahlndayisenga0@gmail.com", tel: "+25762858863", groupe: "Butecket team", profil: "Frontend", niveau: "Intermédiaire" },
+  { id: "31", nom: "Shurweryimana Benitha", email: "benithashurweryimana7@gmail.com", tel: "", groupe: "Akatsuki", profil: "Frontend", niveau: "Débutant" },
 ];
 
 export const JOURS = [
