@@ -299,8 +299,8 @@ function Registre() {
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                    disabled={chargement}
-                    className="w-full md:w-[420px] flex items-center justify-between gap-2 rounded-xl border border-white/20 bg-ink px-4 py-3 text-left text-sm hover:border-gold transition-colors"
+                    disabled={chargement || jour !== isoDuJour()}
+                    className="w-full md:w-[420px] flex items-center justify-between gap-2 rounded-xl border border-white/20 bg-ink px-4 py-3 text-left text-sm hover:border-gold transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-white/20"
                   >
                     <span className="flex items-center gap-2 text-white/70">
                       <Search className="size-4" />
@@ -404,8 +404,9 @@ function Registre() {
                       </div>
                       <button
                         type="button"
+                        disabled={jour !== isoDuJour()}
                         onClick={() => retirer(c.id, jour)}
-                        className="text-white/40 hover:text-crimson transition-colors"
+                        className="text-white/40 hover:text-crimson transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-white/40"
                         aria-label={`Retirer ${c.nom}`}
                       >
                         <Trash2 className="size-4" />
@@ -461,8 +462,9 @@ function Registre() {
                         <td className="py-3 text-right">
                           <button
                             type="button"
+                            disabled={j.iso !== isoDuJour()}
                             onClick={() => retirer(candidat.id, j.iso)}
-                            className="text-white/40 hover:text-crimson transition-colors"
+                            className="text-white/40 hover:text-crimson transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-white/40"
                             aria-label={`Retirer ${candidat.nom}`}
                           >
                             <Trash2 className="size-4" />
