@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Check, ChevronsUpDown, Search, Trash2 } from "lucide-react";
+import { Check, ChevronsUpDown, Lock, Search, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
