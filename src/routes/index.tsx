@@ -135,9 +135,11 @@ function Registre() {
   const marquer = async (candidatId: string) => {
     const k = cle(candidatId, jour);
     setErreur(null);
-    if (jour > isoDuJour()) {
+    if (jour !== isoDuJour()) {
       setErreur(
-        "Impossible de pointer : cette journée n'est pas encore arrivée.",
+        jour > isoDuJour()
+          ? "Impossible de pointer : cette journée n'est pas encore arrivée."
+          : "Impossible de pointer : cette journée est dépassée et verrouillée.",
       );
       return;
     }
@@ -162,6 +164,13 @@ function Registre() {
   };
 
   const retirer = async (candidatId: string, iso: string) => {
+    if (iso !== isoDuJour()) {
+      setErreur(
+        "Impossible de supprimer : seule la journée d'aujourd'hui peut être modifiée.",
+      );
+      setMessage(null);
+      return;
+    }
     const precedent = presences;
     const suivant = new Set(precedent);
     suivant.delete(cle(candidatId, iso));
