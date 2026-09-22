@@ -295,6 +295,15 @@ function Registre() {
                 })}
               </div>
 
+              {jour !== isoDuJour() && (
+                <p className="mb-4 text-sm text-white/50 flex items-center gap-2">
+                  <Lock className="size-4 text-gold" />
+                  {jour > isoDuJour()
+                    ? "Cette journée n'est pas encore arrivée : pointage indisponible."
+                    : "Cette journée est dépassée : pointage verrouillé, consultation seule."}
+                </p>
+              )}
+
               <Popover open={ouvert} onOpenChange={setOuvert}>
                 <PopoverTrigger asChild>
                   <button
